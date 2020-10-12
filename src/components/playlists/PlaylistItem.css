@@ -1,0 +1,12 @@
+.scroll-playlist {
+    padding: 0;
+    max-height: 450px;
+    min-height: 400px;
+    overflow-y: auto;
+}
+
+.section-heading-lower {
+    padding: 15px;
+    font-size: 2rem !important;
+    font-weight: 350 !important;
+}
