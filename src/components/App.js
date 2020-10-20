@@ -1,10 +1,17 @@
 import React from "react";
+import "./App.css";
 import AboutPage from "./AboutPage";
 import { Route, Switch, Redirect } from "react-router-dom";
 import NotFoundPage from "./NotFoundPage";
 import { ToastContainer } from "react-toastify";
 import PlaylistHome from "./playlists/PlaylistsHome";
-import "./App.css";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import { faAngleDown, faAngleUp, faPlus } from "@fortawesome/free-solid-svg-icons";
+ 
+// Add the icons into the library of the project
+library.add(fab, faAngleDown, faAngleUp, faPlus)
+
 
 function App() {
   return (

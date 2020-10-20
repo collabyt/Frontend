@@ -4,6 +4,7 @@ import actionTypes from "../actions/actionTypes";
 
 const CHANGE_EVENT = "change";
 let _playlists = [];
+let _playlist = null;
 
 class PlaylistStore extends EventEmitter {
   addChangeListener(callback) {
@@ -40,6 +41,10 @@ Dispatcher.register(action => {
       break;
     case actionTypes.LOAD_PLAYLISTS:
       _playlists = action.playlists;
+      store.emitChange();
+      break;
+    case actionTypes.GET_PLAYLIST_BY_ID:
+      _playlist = action.playlist;
       store.emitChange();
       break;
     default:

@@ -20,6 +20,12 @@
   border-color: hsla(0,0%,100%,.85);
 }
 
+.btn.btn-primary {
+  background-color: #582565;
+  border-color: #582565;
+}
+
+
 .btn.btn-outline-primary:hover {
   color: #582565;
   background-color: #582565;

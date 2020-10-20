@@ -23,3 +23,21 @@ export function loadPlaylists() {
   });
 }
 
+export function getPlaylistById(playlistId) {
+  return playlistsApi.getPlaylistById(playlistId).then(playlist => {
+    dispatcher.dispatch({
+      actionType: actionTypes.GET_PLAYLIST_BY_ID,
+      playlist: playlist
+    });
+  });
+}
+
+export function addNewVideoPlaylist(playlistId, video) {
+  return playlistsApi.addNewVideoPlaylist(playlistId, video).then(updatedPlaylist => {
+    // Hey dispatcher, go tell all the stores that a course was just created.
+    dispatcher.dispatch({
+      actionType: actionTypes.ADD_VIDEO_INTO_PLAYLIST,
+      updatedPlaylist: updatedPlaylist
+    });
+  });
+}
