@@ -29,7 +29,7 @@ class VideoItem extends React.Component {
 			</button>
 			<div className="panel-collapse collapse text-center"  id={"video_" + this.props.indexPlaylist + this.props.index}>
 				<iframe name={"video_" + this.props.index} title={"video_" + this.props.index} id={"video_" + this.props.index} type="text/html" 
-				width="700" height="375" src={this.props.video.link} frameBorder="0" allowFullScreen></iframe>
+				width="700" height="375" src={"https://www.youtube.com/embed/" + this.props.video.uniqueId} frameBorder="0" allowFullScreen></iframe>
 			</div>
 		</li>);
 

@@ -37,7 +37,8 @@ export function addNewVideoPlaylist(playlistId, video) {
     // Hey dispatcher, go tell all the stores that a course was just created.
     dispatcher.dispatch({
       actionType: actionTypes.ADD_VIDEO_INTO_PLAYLIST,
-      updatedPlaylist: updatedPlaylist
+      playlistId: playlistId,
+      video: video
     });
   });
 }

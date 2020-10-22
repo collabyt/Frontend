@@ -4,6 +4,8 @@ import VideoItem from "./VideoItem";
 import "./PlaylistItem.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AddVideoForm from "./AddVideo";
+import { addNewVideoPlaylist } from "../../actions/playlistActions";
+import playlistStore from "../../stores/playlistStore";
 
 class PlaylistItem extends React.Component {
 
@@ -17,8 +19,8 @@ class PlaylistItem extends React.Component {
 		}
 	}
 
-	addNewVideo () {
-
+	addNewVideo = (playlistId, video) => {
+		addNewVideoPlaylist(playlistId, video);
 	}
 
 	render () {
@@ -41,13 +43,13 @@ class PlaylistItem extends React.Component {
 							  </button>
 							  <div className="panel-collapse collapse text-center"  id={"add_" + this.props.index}>
 								  <div className="col-xl-8 mx-auto border mt-2 mb-2 p-2">
-								  <AddVideoForm video={this.state.newVideo} onSubmit={() => {return true}}></AddVideoForm>
+								  <AddVideoForm video={this.state.newVideo} onSubmit={() => this.addNewVideo(this.props.playlist.id, this.state.newVideo)}></AddVideoForm>
 								  </div>
 							  </div>
 						  </li>
 						  {
-							  playlist.videos && playlist.videos.map((video, index) => {
-								  return (<VideoItem key={index} video={video} index={index} indexPlaylist={props.index}/>)
+							  this.props.playlist.videos && this.props.playlist.videos.map((video, index) => {
+								  return (<VideoItem key={index} video={video} index={index} indexPlaylist={this.props.index}/>)
 							  })
 						  }
 						  </ul>

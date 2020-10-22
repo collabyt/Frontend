@@ -26,7 +26,7 @@ export function savePlaylist(playlist) {
 
 
 export function addNewVideoPlaylist(playlistId, video) {
-  return fetch(baseUrl + "/" + playlistId + "videos", {
+  return fetch(baseUrl + "/" + playlistId + "/videos", {
     method: "POST", // POST for create, PUT to update when id already exists.
     headers: { "content-type": "application/json" },
     body: JSON.stringify(video)

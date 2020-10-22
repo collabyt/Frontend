@@ -4,7 +4,6 @@ import actionTypes from "../actions/actionTypes";
 
 const CHANGE_EVENT = "change";
 let _playlists = [];
-let _playlist = null;
 
 class PlaylistStore extends EventEmitter {
   addChangeListener(callback) {
@@ -23,7 +22,16 @@ class PlaylistStore extends EventEmitter {
     return _playlists;
   }
 
-}
+  addNewVideoPlaylist(playlistId, video) {
+    let playlist = _playlists.find(p => p.id === playlistId);
+
+    if (!playlist) {
+      return;
+    }
+
+    playlist.videos.push(video);
+  }
+} 
 
 const store = new PlaylistStore();
 
@@ -45,6 +53,10 @@ Dispatcher.register(action => {
       break;
     case actionTypes.GET_PLAYLIST_BY_ID:
       _playlist = action.playlist;
+      store.emitChange();
+      break;
+    case actionTypes.ADD_VIDEO_INTO_PLAYLIST:
+      store.addNewVideoPlaylist(action.playlistId, action.video);
       store.emitChange();
       break;
     default:
