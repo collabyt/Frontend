@@ -1,8 +1,23 @@
-import dispatcher from "../appDispatcher";
 import * as playlistsApi from "../api/playlistsApi";
 import actionTypes from "./actionTypes";
 
-export function savePlaylist(playlist) {
+export const requestPlaylists = () => ({
+  type: actionTypes.REQUEST_PLAYLISTS
+})
+
+export const receivePlaylists = (json) => ({
+  type: actionTypes.LOAD_PLAYLISTS,
+  list: json
+})
+
+export const loadPlaylists = () => dispatch => {
+  dispatch(requestPlaylists())
+  return fetch(playlistsApi.getPlaylists())
+    .then(response => response.json())
+    .then(json => dispatch(receivePlaylists(json)))
+}
+
+/*export function savePlaylist(playlist) {
   return playlistsApi.savePlaylist(playlist).then(savedPlaylist => {
     // Hey dispatcher, go tell all the stores that a course was just created.
     dispatcher.dispatch({
@@ -12,27 +27,20 @@ export function savePlaylist(playlist) {
       playlist: savedPlaylist
     });
   });
-}
+}*/
 
-export function loadPlaylists() {
-  return playlistsApi.getPlaylists().then(playlists => {
-    dispatcher.dispatch({
-      actionType: actionTypes.LOAD_PLAYLISTS,
-      playlists: playlists
-    });
-  });
-}
 
-export function getPlaylistById(playlistId) {
+
+/*export function getPlaylistById(playlistId) {
   return playlistsApi.getPlaylistById(playlistId).then(playlist => {
     dispatcher.dispatch({
       actionType: actionTypes.GET_PLAYLIST_BY_ID,
       playlist: playlist
     });
   });
-}
+}*/
 
-export function addNewVideoPlaylist(playlistId, video) {
+/*export function addNewVideoPlaylist(playlistId, video) {
   return playlistsApi.addNewVideoPlaylist(playlistId, video).then(updatedPlaylist => {
     // Hey dispatcher, go tell all the stores that a course was just created.
     dispatcher.dispatch({
@@ -41,4 +49,4 @@ export function addNewVideoPlaylist(playlistId, video) {
       video: video
     });
   });
-}
+}*/

@@ -1,28 +1,38 @@
-import React, { useState, useEffect } from "react";
-import playlistStore from "../../stores/playlistStore";
+import React from "react";
+import { connect } from 'react-redux';
 import PlaylistItems from "./PlaylistItems";
 import { loadPlaylists } from "../../actions/playlistActions";
 
-function PlaylistHome() {
-  const [playlists, setPlaylists] = useState(playlistStore.getPlaylists());
-
-  useEffect(() => {
-    playlistStore.addChangeListener(onChange);
-    if (playlistStore.getPlaylists.length === 0) loadPlaylists();
-    return () => playlistStore.removeChangeListener(onChange); // cleanup on unmount
-  }, []);
-
-  function onChange() {
-    setPlaylists(playlistStore.getPlaylists());
+class PlaylistHome extends React.Component {
+  
+  componentDidMount() {
+    this.props.loadPlaylists();
   }
 
-  return (
-    <>
+  componentDidUpdate(prevProps) {
+    if (this.props.playlists.length === 0) {
+      this.props.loadPlaylists();
+    }
+  }
+
+  render () {
+    return (<>
       {
-        playlists ? <PlaylistItems playlists={playlists} /> : <div></div>
+        this.props.playlists.length > 0 ? <PlaylistItems playlists={this.props.playlists} /> : <div></div>
       }
     </>
-  );
+    );
+  }
 }
 
-export default PlaylistHome;
+const mapDispatchToProps = {
+  loadPlaylists
+};
+
+const mapStateToProps = state => {
+  return {
+    playlists: state.playlists
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlaylistHome);

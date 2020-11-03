@@ -4,8 +4,7 @@ import VideoItem from "./VideoItem";
 import "./PlaylistItem.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AddVideoForm from "./AddVideo";
-import { addNewVideoPlaylist } from "../../actions/playlistActions";
-import playlistStore from "../../stores/playlistStore";
+//import { addNewVideoPlaylist } from "../../actions/playlistActions";
 
 class PlaylistItem extends React.Component {
 
@@ -20,7 +19,7 @@ class PlaylistItem extends React.Component {
 	}
 
 	addNewVideo = (playlistId, video) => {
-		addNewVideoPlaylist(playlistId, video);
+		//addNewVideoPlaylist(playlistId, video);
 	}
 
 	render () {
