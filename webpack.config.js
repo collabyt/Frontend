@@ -1,14 +1,11 @@
 
 const path = require('path');
-const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
     entry: [
-        '@babel/polyfill',
-        './src/assets/bootstrap/js/bootstrap.min.js',
-        './node_modules/jquery/dist/jquery.js',
         './src/assets/js/current-day.js', 
         './src/index.js'],
     output: {
@@ -19,6 +16,11 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.jsx']
+    },
+    optimization: {
+        runtimeChunk: {
+          name: 'runtime'
+        }
     },
     module: {
         rules: [
@@ -60,6 +62,7 @@ module.exports = {
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery"
-        })
+        }),
+        new BundleAnalyzerPlugin()
     ]
 };

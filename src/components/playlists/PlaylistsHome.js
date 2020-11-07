@@ -9,13 +9,8 @@ class PlaylistHome extends React.Component {
     this.props.loadPlaylists();
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.playlists.length === 0) {
-      this.props.loadPlaylists();
-    }
-  }
-
   render () {
+    
     return (<>
       {
         this.props.playlists.length > 0 ? <PlaylistItems playlists={this.props.playlists} /> : <div></div>
@@ -31,7 +26,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = state => {
   return {
-    playlists: state.playlists
+    playlists: state.playlists.totalPlaylists
   }
 }
 

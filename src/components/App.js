@@ -3,7 +3,6 @@ import "./App.css";
 import AboutPage from "./AboutPage";
 import { Route, Switch, Redirect } from "react-router-dom";
 import NotFoundPage from "./NotFoundPage";
-import { ToastContainer } from "react-toastify";
 import PlaylistHome from "./playlists/PlaylistsHome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -17,7 +16,6 @@ function App() {
   return (
     <section className="page-section cta">
         <h3 className="text-center title">CollabYT</h3>
-      <ToastContainer autoClose={3000} hideProgressBar />
       <Switch>
         <Route path="/" exact component={PlaylistHome} />
         <Route path="/about" component={AboutPage} />

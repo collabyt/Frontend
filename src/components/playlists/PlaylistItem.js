@@ -4,22 +4,13 @@ import VideoItem from "./VideoItem";
 import "./PlaylistItem.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AddVideoForm from "./AddVideo";
-//import { addNewVideoPlaylist } from "../../actions/playlistActions";
+import { addNewVideoPlaylist } from "../../actions/playlistActions";
+import { connect } from "react-redux";
 
 class PlaylistItem extends React.Component {
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			newVideo: { 
-				name: "",
-				link: ""
-			}
-		}
-	}
-
 	addNewVideo = (playlistId, video) => {
-		//addNewVideoPlaylist(playlistId, video);
+		this.props.addNewVideoPlaylist(playlistId, video);
 	}
 
 	render () {
@@ -42,7 +33,7 @@ class PlaylistItem extends React.Component {
 							  </button>
 							  <div className="panel-collapse collapse text-center"  id={"add_" + this.props.index}>
 								  <div className="col-xl-8 mx-auto border mt-2 mb-2 p-2">
-								  <AddVideoForm video={this.state.newVideo} onSubmit={() => this.addNewVideo(this.props.playlist.id, this.state.newVideo)}></AddVideoForm>
+								  <AddVideoForm video={this.props.newVideo} onSubmit={() => this.addNewVideo(this.props.playlist.id, this.state.newVideo)}></AddVideoForm>
 								  </div>
 							  </div>
 						  </li>
@@ -85,4 +76,17 @@ PlaylistItem.propTypes = {
 	})
 };
 
-export default PlaylistItem;
+const mapStateToProps = state => {
+	return {
+		newVideo: { 
+			name: "",
+			link: ""
+		}
+	}
+  }
+
+const mapDispatchToProps = {
+	addNewVideoPlaylist
+  };
+
+export default  connect(mapStateToProps, mapDispatchToProps)(PlaylistItem);

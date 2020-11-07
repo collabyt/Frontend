@@ -1,42 +1,52 @@
 import actionTypes from '../actions/actionTypes';
 
-const initialState = {
-  playlists: [],
+export const initialState = {
+  totalPlaylists: [],
+  totalKyeword: [],
   selectedPlaylist: null
 }
 
-function updateObject(oldObject, newValues) {
-  return Object.assign({}, oldObject, newValues)
-}
-
-function addNewVideoPlaylist(playlists, playlistId, video) {
+function addNewVideoPlaylist(playlists, playlist) {
     playlists.map(p => {
-      if (p.id === playlistId) {
-        p.videos.push(video);
+      if (p.id === playlist.id) {
+        return playlist;
       }
-      
-      return p;
     });
 
     return playlists;
 } 
 
 const playlists = (state = initialState, action) => {
-  switch (action.actionType) {
+  switch (action.type) {
     case actionTypes.CREATE_PLAYLIST:
       let newPlaylists = state.playlists.concat(action.playlist)
-      return updateObject(state, { playlists: newPlaylists })
+      return {
+        ...state, 
+        totalPlaylists: newPlaylists 
+      };
     case actionTypes.UPDATE_PLAYLIST:
       newPlaylists = state.playlists.map(playlist =>
         playlist.id === action.playlist.id ? action.playlist : playlist
       )
-      return updateObject(state, { playlists: newPlaylists })
+      return  {
+        ...state, 
+        totalPlaylists: newPlaylists 
+      };
     case actionTypes.LOAD_PLAYLISTS:
-      return updateObject(state, { playlists: action.list })
+      return {
+              ...state, 
+              totalPlaylists: action.list 
+            };
     case actionTypes.GET_PLAYLIST_BY_ID:
-      return updateObject(state, { selectedPlaylist: action.playlist})
+      return {
+        ...state, 
+        selectedPlaylist: action.playlist 
+      };
     case actionTypes.ADD_VIDEO_INTO_PLAYLIST:
-      return updateObject(state, { playlists: addNewVideoPlaylist(state.playlists, action.playlistId, action.video)})      
+      return {
+        ...state,
+        totalPlaylists: addNewVideoPlaylist(state.playlists, action.playlist)
+      };     
     default:
       return state;
   }
