@@ -7,6 +7,7 @@
   margin-bottom: 0px;
   background-color: #582565;
   padding-top: 50px;
+  height: 972px;
 }
 
 .container {
@@ -50,5 +51,30 @@
 
 .title {
   color: #EABFFF;
+}
+
+.keyword {
+  background: #582565;
+  border-color: #582565 !important;
+  color: #EABFFF;
+  padding: 5px 10px 5px 10px;
+  border-radius: 20px;
+}
+
+.playlist-container {
+  padding: 20px 0 10px 0;
+}
+
+.container {
+  min-height: 600px;
+}
+
+.carousel {
+  min-height: 600px;
+}
+
+.create-playlist {
+  background-color: #EABFFF;
+  border-radius: 20px;
 }
 

@@ -7,23 +7,26 @@ function PlaylistItems(props) {
 
   return (
     <div className="container">
-        <div className="carousel slide" data-ride="carousel" id="carousel-1" data-interval="false">
-          <div className="carousel-inner" role="listbox">
-          {
-            playlists && playlists.map((playlist, index) => {
-              return (<PlaylistItem key={index} index={index} playlist={playlist} active={index === 0 ? true : false} />)
-            })
-          }
-          </div>
-   
-          <ol className="carousel-indicators">
-          {
-            playlists && playlists.map((playlist, index) => {
-              return (<li key={index} data-target="#carousel-1" data-slide-to={index.toString()} className={index === 0 ? "active" : ""}></li>)
-            })
-          }
-          </ol>
+      <button type="button" className="create-playlist btn btn-ouline-primary float-right mb-3" data-toggle="modal" data-target="#createPlaylist">
+         <i className="fa fa-plus mr-1"></i>Add playlist
+      </button>
+      <div className="carousel slide" data-ride="carousel" id="carousel-1" data-interval="false">
+        <div className="carousel-inner" role="listbox">
+        {
+          playlists && playlists.map((playlist, index) => {
+            return (<PlaylistItem key={index} index={index} playlist={playlist} active={index === 0 ? true : false} />)
+          })
+        }
         </div>
+  
+        <ol className="carousel-indicators">
+        {
+          playlists && playlists.map((playlist, index) => {
+            return (<li key={index} data-target="#carousel-1" data-slide-to={index.toString()} className={index === 0 ? "active" : ""}></li>)
+          })
+        }
+        </ol>
+      </div>
     <div>
 	<a className="carousel-control-prev" href="#carousel-1" role="button" data-slide="prev">
 		<span className="carousel-control-prev-icon"></span>

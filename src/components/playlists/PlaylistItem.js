@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import VideoItem from "./VideoItem";
+import VideoItem from "./videos/VideoItem";
 import "./PlaylistItem.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import AddVideoForm from "./AddVideo";
+import AddVideoForm from "./videos/AddVideo";
 import { addNewVideoPlaylist } from "../../actions/playlistActions";
 import { connect } from "react-redux";
+import KeywordsList from "./keywords/KeywordsList";
 
 class PlaylistItem extends React.Component {
 
@@ -18,7 +19,7 @@ class PlaylistItem extends React.Component {
 			<div className={this.props.active  ? "carousel-item active" : "carousel-item"}>
 			  <div className="row">
 				  <div className="col-xl-12 mx-auto">
-					  <div className="cta text-center rounded pb-0 pt-2">
+					  <div className="cta text-center rounded playlist-container">
 						  <h6 className="section-heading mb-3">	
 							  <span className="section-heading-lower">{this.props.playlist.name}</span>
 						  </h6>
@@ -43,6 +44,7 @@ class PlaylistItem extends React.Component {
 							  })
 						  }
 						  </ul>
+						  <KeywordsList KeywordsList={this.props.playlist.words}></KeywordsList>
 					  </div>
 				  </div>
 			  </div>
