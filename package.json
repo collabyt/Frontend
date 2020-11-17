@@ -4,10 +4,6 @@
   "private": true,
   "dependencies": {
     "@babel/runtime": "^7.11.2",
-    "@fortawesome/fontawesome-svg-core": "^1.2.32",
-    "@fortawesome/free-brands-svg-icons": "^5.15.1",
-    "@fortawesome/free-solid-svg-icons": "^5.15.1",
-    "@fortawesome/react-fontawesome": "^0.1.11",
     "bootstrap": "^4.3.1",
     "core-js": "^2.6.11",
     "jquery": "^3.5.1",
@@ -18,6 +14,10 @@
     "react-scripts": "3.0.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.6",
+    "react-dom": ">=16.8.6"
   },
   "scripts": {
     "start:old": "run-p start:dev start:api",
@@ -67,6 +67,7 @@
     "css-loader": "^4.3.0",
     "expose-loader": "^1.0.0",
     "file-loader": "^6.1.0",
+    "imports-loader": "^1.2.0",
     "json-server": "^0.15.0",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.1.1",

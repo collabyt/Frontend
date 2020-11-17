@@ -8,11 +8,10 @@ class KeywordsList extends React.Component {
 		{
 			this.props.keywords ? 
 				this.props.keywords.map(keyword => 
-					{ return (<div key={keyword.id} className="keyword mr-2 border border-primary">{keyword.name}</div>) }
+					{ return (<div key={keyword.id} className="keyword mr-2 border border-primary">{keyword.word}</div>) }
 				) : <div></div>
 		}
-	</div>);
-
+		</div>);
 	}
 }
 
@@ -20,7 +19,7 @@ KeywordsList.propTypes = {
 	keywords: PropTypes.arrayOf(PropTypes.shape({
 		id: PropTypes.number,
 		name: PropTypes.string,
-	})).isRequired
+	}))
 };
 
 export default KeywordsList;

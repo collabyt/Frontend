@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import VideoItem from "./videos/VideoItem";
 import "./PlaylistItem.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AddVideoForm from "./videos/AddVideo";
 import { addNewVideoPlaylist } from "../../actions/playlistActions";
 import { connect } from "react-redux";
@@ -23,13 +22,13 @@ class PlaylistItem extends React.Component {
 						  <h6 className="section-heading mb-3">	
 							  <span className="section-heading-lower">{this.props.playlist.name}</span>
 						  </h6>
-						  <ul id={"playlist_" + this.props.index} className="mx-0 p-0 mb-5 text-left scroll-playlist">
+						  <ul id={"playlist_" + this.props.index} className="mx-0 p-0 mb-2 text-left scroll-playlist">
 						  <li className="d-flex w-100 mb-1 flex-column">
 							  <button type="button" className="btn btn-ouline-primary text-left w-100" data-toggle="collapse" 
 							  data-parent={"#playlist_" + this.props.index} href={"#add_" + this.props.index}>
 								  Add video
 								  <div className="bi bi-chevron-down float-right mt-1">
-									  <FontAwesomeIcon icon={"plus"} title="Add video"/>
+								  	<i className="fa fa-plus"/>
 								  </div>
 							  </button>
 							  <div className="panel-collapse collapse text-center"  id={"add_" + this.props.index}>
@@ -44,7 +43,7 @@ class PlaylistItem extends React.Component {
 							  })
 						  }
 						  </ul>
-						  <KeywordsList KeywordsList={this.props.playlist.words}></KeywordsList>
+						  <KeywordsList keywords={this.props.playlist.words}></KeywordsList>
 					  </div>
 				  </div>
 			  </div>
@@ -78,13 +77,11 @@ PlaylistItem.propTypes = {
 	})
 };
 
-const mapStateToProps = state => {
-	return {
-		newVideo: { 
+const mapStateToProps =  {
+	newVideo: { 
 			name: "",
 			link: ""
 		}
-	}
   }
 
 const mapDispatchToProps = {

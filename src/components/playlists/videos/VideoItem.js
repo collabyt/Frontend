@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class VideoItem extends React.Component {
 
@@ -22,8 +21,7 @@ class VideoItem extends React.Component {
 				{this.props.video.name}
 				<div className="bi bi-chevron-down float-right mt-1">
 					{
-						this.state.toggleIcon ?	<FontAwesomeIcon icon={"angle-up"} title="Close video"/> :
-						<FontAwesomeIcon icon={"angle-down"} title="Show video"/>
+						this.state.toggleIcon ?	<i className="fa fa-angle-up"></i> : <i className="fa fa-angle-down"></i>
 					}
 				</div>
 			</button>

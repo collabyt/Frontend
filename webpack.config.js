@@ -15,7 +15,7 @@ module.exports = {
         publicPath: ''
     },
     resolve: {
-        extensions: ['.js', '.jsx']
+        extensions: ['.js']
     },
     optimization: {
         runtimeChunk: {
@@ -37,14 +37,7 @@ module.exports = {
             {
                 test: /\.(png|jpe?g|gif)$/,
                 loader: 'url-loader?limit=10000&name=img/[name].[ext]'
-            },
-            {
-                test: require.resolve('jquery'),
-                loader: 'expose-loader',
-                options: {
-                  exposes: ['$', 'jQuery'],
-                },
-              },
+            }
         ]
     },
     devtool: 'inline-source-map',
@@ -61,7 +54,10 @@ module.exports = {
         }),
         new webpack.ProvidePlugin({
             $: "jquery",
-            jQuery: "jquery"
+            jQuery: "jquery",
+            "window.jQuery": "jquery",
+            "window.Tether": 'tether',
+            "Tether": 'tether'
         }),
         new BundleAnalyzerPlugin()
     ]
