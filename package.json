@@ -27,7 +27,8 @@
     "start:api": "node tools/apiServer.js",
     "build": "webpack -p --mode=production",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint ."
   },
   "keywords": [
     "Autoprefixer",
@@ -38,7 +39,11 @@
   ],
   "main": "index.js",
   "eslintConfig": {
-    "extends": "react-app"
+    "ignorePatterns": ["**/public/*.js"],
+    "extends": [
+      "react-app",
+      "plugin:react-hooks/recommended"
+    ]
   },
   "browserslist": {
     "production": [
@@ -65,6 +70,12 @@
     "babel-loader": "^8.1.0",
     "cross-env": "^5.2.0",
     "css-loader": "^4.3.0",
+    "eslint": "^7.13.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "expose-loader": "^1.0.0",
     "file-loader": "^6.1.0",
     "imports-loader": "^1.2.0",

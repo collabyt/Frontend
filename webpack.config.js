@@ -6,16 +6,15 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 module.exports = {
     entry: [
-        './src/assets/js/current-day.js', 
         './src/index.js'],
     output: {
-        path: path.resolve(__dirname, 'public'),
+        path: path.resolve(__dirname, 'build'),
         filename: 'bundle.js',
         chunkFilename: '[id].js',
         publicPath: ''
     },
     resolve: {
-        extensions: ['.js']
+        extensions: ['.js', '.jsx']
     },
     optimization: {
         runtimeChunk: {
@@ -37,6 +36,13 @@ module.exports = {
             {
                 test: /\.(png|jpe?g|gif)$/,
                 loader: 'url-loader?limit=10000&name=img/[name].[ext]'
+            },
+            {
+                test: require.resolve('jquery'),
+                loader: 'expose-loader',
+                options: {
+                  exposes: ['$', 'jQuery'],
+                },
             }
         ]
     },

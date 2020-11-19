@@ -11,16 +11,18 @@ Relevant source code: https://github.com/typicode/json-server/blob/master/src/cl
 */
 
 /* eslint-disable no-console */
-const jsonServer = require("json-server");
+const jsonServer = require('json-server');
+
 const server = jsonServer.create();
-const path = require("path");
-const router = jsonServer.router(path.join(__dirname, "db.json"));
-const db = path.join(__dirname, "db.json");
+const path = require('path');
+
+const router = jsonServer.router(path.join(__dirname, 'db.json'));
+const db = path.join(__dirname, 'db.json');
 
 // Can pass a limited number of options to this to override (some) defaults. See https://github.com/typicode/json-server#api
 const middlewares = jsonServer.defaults({
   // Display json-server's built in homepage when json-server starts.
-  static: "node_modules/json-server/dist"
+  static: 'node_modules/json-server/dist',
 });
 
 // Set default middlewares (logger, static, cors and no-cache)
@@ -30,7 +32,7 @@ server.use(middlewares);
 server.use(jsonServer.bodyParser);
 
 // Simulate delay on all requests
-server.use(function(req, res, next) {
+server.use((req, res, next) => {
   setTimeout(next, 0);
 });
 
@@ -42,7 +44,7 @@ server.use((req, res, next) => {
   next();
 });
 
-server.post("/playlists", function(req, res, next) {
+server.post('/playlists', (req, res, next) => {
   const error = validatePlaylists(req.body);
   if (error) {
     res.status(400).send(error);
@@ -51,9 +53,8 @@ server.post("/playlists", function(req, res, next) {
   }
 });
 
-
-server.post("/playlists/1/videos", function(req, res, next) {
-  let playlist = this.db.playlists.find(p => p.id === 1);
+server.post('/playlists/1/videos', function (req, res, next) {
+  const playlist = this.db.playlists.find((p) => p.id === 1);
 
   if (!playlist) {
     playlist.videos.push(req.body);
@@ -69,8 +70,7 @@ server.listen(port, () => {
   console.log(`JSON Server is running on port ${port}`);
 });
 
-
 function validatePlaylists(playlist) {
-  if (!playlist.name) return "Name is required.";
-  return "";
+  if (!playlist.name) return 'Name is required.';
+  return '';
 }

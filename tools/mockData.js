@@ -1,25 +1,25 @@
-const videosDB = require("./db-data/videos-data");
-const playlistsDB = require("./db-data/playlists-data");
-const keywordsDB = require("./db-data/keywords-data");
+import { videos as _videos } from './db-data/videos-data';
+import { playlists as _playlists } from './db-data/playlists-data';
+import { keywords as _keywords } from './db-data/keywords-data';
 
-const playlists = playlistsDB.playlists;
-const videos = videosDB.videos;
-const keywords = keywordsDB.keywords;
+const playlists = _playlists;
+const videos = _videos;
+const keywords = _keywords;
 
 const newPlaylist = {
   id: null,
-  publicId: "",
-  name: "",
+  publicId: '',
+  name: '',
   isPublic: false,
-  passPhrase: "",
+  passPhrase: '',
   words: [],
-  videos: []
+  videos: [],
 };
 
 // Using CommonJS style export so we can consume via Node (without using Babel-node)
-module.exports = {
+export default {
   newPlaylist,
   playlists,
   videos,
-  keywords
+  keywords,
 };

@@ -1,10 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 class AddPlaylistModal extends React.Component {
-
-	render () {
-		return (<div className="modal fade" id="createPlaylist" tabIndex="-1" role="dialog" aria-labelledby="createPlaylistTitle">
+  render() {
+    return (
+      <div className="modal fade" id="createPlaylist" tabIndex="-1" role="dialog" aria-labelledby="createPlaylistTitle">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
@@ -22,9 +22,9 @@ class AddPlaylistModal extends React.Component {
             </div>
           </div>
         </div>
-      </div>);
-
-	}
+      </div>
+    );
+  }
 }
 
 export default AddPlaylistModal;

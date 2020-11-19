@@ -1,14 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function TextInput(props) {
-  
-  let wrapperClass = "form-group";
-  
+  let wrapperClass = 'form-group';
+
   if (props.error && props.error.length > 0) {
-    wrapperClass += " has-error";
+    wrapperClass += ' has-error';
   }
-  
+
   return (
     <div className={wrapperClass}>
       <label htmlFor={props.id}>{props.label}</label>
@@ -33,7 +32,7 @@ TextInput.propTypes = {
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   value: PropTypes.string,
-  error: PropTypes.string
+  error: PropTypes.string,
 };
 
 export default TextInput;

@@ -1,11 +1,8 @@
-import React from "react";
-import "./App.css";
-import { Route, Switch } from "react-router-dom";
-import NotFoundPage from "./NotFoundPage";
-import PlaylistHome from "./playlists/PlaylistsHome";
-import AddPlaylistModal from "./playlists/AddPlaylist";
- 
-
+import React from 'react';
+import './App.css';
+import { Route, Switch } from 'react-router-dom';
+import NotFoundPage from './NotFoundPage';
+import PlaylistHome from './playlists/PlaylistsHome';
 
 function App() {
   return (

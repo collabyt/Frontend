@@ -1,0 +1,4 @@
+/build/*.js
+/src/assets/bootstrap/js/*.js
+/src/assets/js/*.js
+webpack.config.js

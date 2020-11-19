@@ -1,48 +1,50 @@
-const keywords = [{
+const keywords = [
+  {
     id: 1,
-    word: "Eleições"
-}, {
+    word: 'Eleições',
+  }, {
     id: 2,
-    word: "Bolsonaro"
-}, {
+    word: 'Bolsonaro',
+  }, {
     id: 3,
-    word: "Queimadas"
-}, {
+    word: 'Queimadas',
+  }, {
     id: 4,
-    word: "Historia"
-}, {
+    word: 'Historia',
+  }, {
     id: 5,
-    word: "Lua"
-}, {
+    word: 'Lua',
+  }, {
     id: 6,
-    word: "Jogos"
-}, {
+    word: 'Jogos',
+  }, {
     id: 7,
-    word: "Trump"
-}, {
+    word: 'Trump',
+  }, {
     id: 8,
-    word: "EUA"
-}, {
+    word: 'EUA',
+  }, {
     id: 9,
-    word: "Guerra"
-}, {
+    word: 'Guerra',
+  }, {
     id: 10,
-    word: "Pandemia"
-}, {
+    word: 'Pandemia',
+  }, {
     id: 11,
-    word: "Brasil"
-}, {
+    word: 'Brasil',
+  }, {
     id: 12,
-    word: "Política"
-}, {
+    word: 'Política',
+  }, {
     id: 13,
-    word: "Corrupção"
-}, {
+    word: 'Corrupção',
+  }, {
     id: 14,
-    word: "Defold"
-}, {
+    word: 'Defold',
+  }, {
     id: 15,
-    word: "Programação"
-}];
+    word: 'Programação',
+  },
+];
 
 module.exports = { keywords };

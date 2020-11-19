@@ -28,7 +28,7 @@ class PlaylistItem extends React.Component {
 							  data-parent={"#playlist_" + this.props.index} href={"#add_" + this.props.index}>
 								  Add video
 								  <div className="bi bi-chevron-down float-right mt-1">
-								  	<i className="fa fa-plus"/>
+								  	<i className="fa fa-plus"></i>
 								  </div>
 							  </button>
 							  <div className="panel-collapse collapse text-center"  id={"add_" + this.props.index}>
@@ -43,7 +43,7 @@ class PlaylistItem extends React.Component {
 							  })
 						  }
 						  </ul>
-						  <KeywordsList keywords={this.props.playlist.words}></KeywordsList>
+						  <KeywordsList keywords={this.props.playlist.words}/>
 					  </div>
 				  </div>
 			  </div>
@@ -77,11 +77,13 @@ PlaylistItem.propTypes = {
 	})
 };
 
-const mapStateToProps =  {
-	newVideo: { 
+const mapStateToProps = state => {
+	return {
+		newVideo: { 
 			name: "",
 			link: ""
 		}
+	}
   }
 
 const mapDispatchToProps = {

@@ -3,54 +3,51 @@ import actionTypes from '../actions/actionTypes';
 export const initialState = {
   totalPlaylists: [],
   totalKyeword: [],
-  selectedPlaylist: null
-}
+  selectedPlaylist: null,
+};
 
 function addNewVideoPlaylist(playlists, playlist) {
-    playlists.map(p => {
-      if (p.id === playlist.id) {
-        return playlist;
-      }
-    });
+  playlists.map((p) => {
+    if (p.id === playlist.id) {
+      return playlist;
+    }
+  });
 
-    return playlists;
-} 
+  return playlists;
+}
 
 const playlists = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.CREATE_PLAYLIST:
-      let newPlaylists = state.playlists.concat(action.playlist)
+      let newPlaylists = state.playlists.concat(action.playlist);
       return {
-        ...state, 
-        totalPlaylists: newPlaylists 
+        ...state,
+        totalPlaylists: newPlaylists,
       };
     case actionTypes.UPDATE_PLAYLIST:
-      newPlaylists = state.playlists.map(playlist =>
-        playlist.id === action.playlist.id ? action.playlist : playlist
-      )
-      return  {
-        ...state, 
-        totalPlaylists: newPlaylists 
+      newPlaylists = state.playlists.map((playlist) => (playlist.id === action.playlist.id ? action.playlist : playlist));
+      return {
+        ...state,
+        totalPlaylists: newPlaylists,
       };
     case actionTypes.LOAD_PLAYLISTS:
       return {
-              ...state, 
-              totalPlaylists: action.list 
-            };
+        ...state,
+        totalPlaylists: action.list,
+      };
     case actionTypes.GET_PLAYLIST_BY_ID:
       return {
-        ...state, 
-        selectedPlaylist: action.playlist 
+        ...state,
+        selectedPlaylist: action.playlist,
       };
     case actionTypes.ADD_VIDEO_INTO_PLAYLIST:
       return {
         ...state,
-        totalPlaylists: addNewVideoPlaylist(state.playlists, action.playlist)
-      };     
+        totalPlaylists: addNewVideoPlaylist(state.playlists, action.playlist),
+      };
     default:
       return state;
   }
-}
-
+};
 
 export default playlists;
