@@ -43,7 +43,7 @@ class PlaylistItem extends React.Component {
 							  })
 						  }
 						  </ul>
-						  <KeywordsList keywords={this.props.playlist.words}/>
+						  <KeywordsList keywords={this.props.playlist.keywords}/>
 					  </div>
 				  </div>
 			  </div>

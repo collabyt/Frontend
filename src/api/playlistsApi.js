@@ -1,7 +1,7 @@
-const baseUrl = 'http://localhost:3001/playlists';
+const baseUrl = 'http://localhost:8080/api/v1/playlists';
 
 export function getPlaylists() {
-  return baseUrl;
+  return `${baseUrl}?limit=10&offset=0`;
 }
 
 export function getPlaylistById(playlistId) {

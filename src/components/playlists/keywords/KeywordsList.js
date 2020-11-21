@@ -7,7 +7,7 @@ class KeywordsList extends React.Component {
       <div className="row d-inline-flex flex-row mx-0 p-2 mb-1 justify-content-center">
         {
 			this.props.keywords
-			  ? this.props.keywords.map((keyword) => (<div key={keyword.id} className="keyword mr-2 border border-primary">{keyword.word}</div>)) : <div />
+			  ? this.props.keywords.map((keyword) => (<div key={keyword.id} className="keyword mr-2 border border-primary">{keyword.keyword}</div>)) : <div />
 		}
       </div>
     );
