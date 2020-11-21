@@ -27,10 +27,16 @@
   border-color: #582565;
 }
 
+.btn.btn-primary:hover {
+  background-color: hsla(0,0%,100%,.85);
+  border-color: hsla(0,0%,100%,.85);
+  color: #582565;
+}
 
 .btn.btn-outline-primary:hover {
   color: #582565;
   background-color: #582565;
+  color: hsla(0,0%,100%,.85);
 }
 .carousel-control-prev {
   width: 25%;

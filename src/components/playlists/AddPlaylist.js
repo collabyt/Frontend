@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import TextInput from '../common/TextInput';
 
 class AddPlaylistModal extends React.Component {
   render() {
@@ -14,10 +15,19 @@ class AddPlaylistModal extends React.Component {
               </button>
             </div>
             <div className="modal-body">
-              ...
+            <form >
+                <TextInput id="name" label="Name"name="Name" value=""/>
+                <TextInput id="name" label="Name"name="Name" value=""/>
+                <button type="button" className="btn btn-ouline-primary text-left w-100">
+								  Add video
+								  <div className="bi bi-chevron-down float-right mt-1">
+								  	<i className="fa fa-plus"></i>
+								  </div>
+							  </button>
+              </form>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" className="btn btn-outline-primary" data-dismiss="modal">Close</button>
               <button type="button" className="btn btn-primary">Save changes</button>
             </div>
           </div>

@@ -3,10 +3,12 @@ import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import NotFoundPage from './NotFoundPage';
 import PlaylistHome from './playlists/PlaylistsHome';
+import AddPlaylistModal from './playlists/AddPlaylist';
 
 function App() {
   return (
-    <section className="page-section cta">
+    <div>
+      <section className="page-section cta">
       <div className="mt-4">
         <h3 className="text-center title">CollabYT</h3>
       </div>
@@ -15,6 +17,9 @@ function App() {
         <Route component={NotFoundPage} />
       </Switch>
     </section>
+    <AddPlaylistModal />
+    </div>
+    
   );
 }
 

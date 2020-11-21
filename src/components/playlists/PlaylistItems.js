@@ -7,10 +7,6 @@ function PlaylistItems(props) {
 
   return (
     <div className="container">
-      <button type="button" className="create-playlist btn btn-ouline-primary float-right mb-3" data-toggle="modal" data-target="#createPlaylist">
-        <i className="fa fa-plus mr-1" />
-        Add playlist
-      </button>
       <div className="carousel slide" data-ride="carousel" id="carousel-1" data-interval="false">
         <div className="carousel-inner" role="listbox">
           {

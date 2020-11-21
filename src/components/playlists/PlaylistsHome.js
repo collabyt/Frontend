@@ -10,11 +10,15 @@ class PlaylistHome extends React.Component {
 
   render() {
     return (
-      <>
-        {
+      <div className="container">
+      <button type="button" className="create-playlist btn btn-ouline-primary float-right mb-3" data-toggle="modal" data-target="#createPlaylist">
+        <i className="fa fa-plus mr-1" />
+        Add playlist
+      </button>  
+      {
         this.props.playlists.length > 0 ? <PlaylistItems playlists={this.props.playlists} /> : <div />
       }
-      </>
+      </div>
     );
   }
 }
