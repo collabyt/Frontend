@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PlaylistItem from './PlaylistItem';
+import PlaylistItem from './playlist-item';
 
 function PlaylistItems(props) {
   const { playlists } = props;

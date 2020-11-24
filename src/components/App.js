@@ -1,9 +1,9 @@
 import React from 'react';
-import './App.css';
+import './app.css';
 import { Route, Switch } from 'react-router-dom';
-import NotFoundPage from './NotFoundPage';
-import PlaylistHome from './playlists/PlaylistsHome';
-import AddPlaylistModal from './playlists/AddPlaylist';
+import NotFoundPage from './not-found';
+import PlaylistHome from './playlists/playlists-index';
+import AddPlaylistModal from './playlists/new-playlist/add-playlist';
 
 function App() {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import TextInput from "../../common/TextInput";
+import TextInput from "../../common/text-input";
 import PropTypes from "prop-types";
 
 class AddVideoForm extends React.Component {

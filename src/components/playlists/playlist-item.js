@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import VideoItem from "./videos/VideoItem";
-import "./PlaylistItem.css";
-import AddVideoForm from "./videos/AddVideo";
-import { addNewVideoPlaylist } from "../../actions/playlistActions";
+import VideoItem from "./videos/video-item";
+import "./playlist-item.css";
+import AddVideoForm from "./videos/add-videos";
+import { addNewVideoPlaylist } from "../../actions/playlist-actions";
 import { connect } from "react-redux";
-import KeywordsList from "./keywords/KeywordsList";
+import KeywordsList from "./keywords/keywords-list";
 
 class PlaylistItem extends React.Component {
 

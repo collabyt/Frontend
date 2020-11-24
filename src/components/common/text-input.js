@@ -19,7 +19,7 @@ function TextInput(props) {
           name={props.name}
           className="form-control"
           defaultValue={props.value}
-        />
+        disabled={props.isDisabled}/>
       </div>
       {props.error && <div className="alert alert-danger">{props.error}</div>}
     </div>
@@ -33,6 +33,7 @@ TextInput.propTypes = {
   onChange: PropTypes.func,
   value: PropTypes.string,
   error: PropTypes.string,
+  isDisabled: PropTypes.bool
 };
 
 export default TextInput;

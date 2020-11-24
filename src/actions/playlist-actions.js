@@ -1,5 +1,5 @@
-import * as playlistsApi from '../api/playlistsApi';
-import actionTypes from './actionTypes';
+import * as playlistsApi from '../api/playlists-api';
+import actionTypes from './action-types';
 
 const requestPOSTOptions = (bodyRequest) => ({
   method: 'POST',

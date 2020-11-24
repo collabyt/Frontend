@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PlaylistItems from './PlaylistItems';
-import { loadPlaylists } from '../../actions/playlistActions';
+import PlaylistItems from './playlist-items';
+import { loadPlaylists } from '../../actions/playlist-actions';
 
 class PlaylistHome extends React.Component {
   componentDidMount() {
