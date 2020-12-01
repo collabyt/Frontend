@@ -3,15 +3,10 @@ import PropTypes from "prop-types";
 import VideoItem from "./videos/video-item";
 import "./playlist-item.css";
 import AddVideoForm from "./videos/add-videos";
-import { addNewVideoPlaylist } from "../../actions/playlist-actions";
 import { connect } from "react-redux";
 import KeywordsList from "./keywords/keywords-list";
 
 class PlaylistItem extends React.Component {
-
-	addNewVideo = (playlistId, video) => {
-		this.props.addNewVideoPlaylist(playlistId, video);
-	}
 
 	render () {
 		return (
@@ -33,7 +28,7 @@ class PlaylistItem extends React.Component {
 							  </button>
 							  <div className="panel-collapse collapse text-center"  id={"add_" + this.props.index}>
 								  <div className="col-xl-8 mx-auto border mt-2 mb-2 p-2">
-								  <AddVideoForm video={this.props.newVideo} onSubmit={() => this.addNewVideo(this.props.playlist.id, this.state.newVideo)}></AddVideoForm>
+								  <AddVideoForm playlist={this.props.playlist}></AddVideoForm>
 								  </div>
 							  </div>
 						  </li>
@@ -58,7 +53,8 @@ PlaylistItem.propTypes = {
 	playlist: PropTypes.shape({
 		id: PropTypes.number.isRequired,
 		name: PropTypes.string.isRequired,
-		isPublic: PropTypes.bool.isRequired,
+		publicid: PropTypes.string.isRequired,
+		isPublic: PropTypes.bool,
 		passPhrase: PropTypes.string,
 		words: PropTypes.arrayOf(
 			PropTypes.shape({
@@ -71,23 +67,10 @@ PlaylistItem.propTypes = {
 			id: PropTypes.number,
 			name: PropTypes.string,
 			link: PropTypes.string,
-			uniqueId: PropTypes.string
+			uniqueid: PropTypes.string
 			})
 		)
 	})
 };
 
-const mapStateToProps = state => {
-	return {
-		newVideo: { 
-			name: "",
-			link: ""
-		}
-	}
-  }
-
-const mapDispatchToProps = {
-	addNewVideoPlaylist
-  };
-
-export default  connect(mapStateToProps, mapDispatchToProps)(PlaylistItem);
+export default  PlaylistItem;

@@ -39,7 +39,7 @@ class VideoItem extends React.Component {
             type="text/html"
             width="700"
             height="375"
-            src={`https://www.youtube.com/embed/${this.props.video.uniqueId}`}
+            src={`https://www.youtube.com/embed/${this.props.video.uniqueid}`}
             frameBorder="0"
             allowFullScreen
           />
@@ -56,7 +56,7 @@ VideoItem.propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
     link: PropTypes.string,
-    uniqueId: PropTypes.string,
+    uniqueid: PropTypes.string,
   }).isRequired,
 };
 

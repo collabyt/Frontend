@@ -24,7 +24,7 @@ export const loadPlaylists = () => (dispatch) => {
     .then((json) => dispatch(receivePlaylists(json)));
 };
 
-export const addNewVideoPlaylist = (playlistId, video) => (dispatch) => fetch(playlistsApi.addNewVideoPlaylist(playlistId), requestPOSTOptions(video))
+export const addNewVideoPlaylist = (publicId, video) => (dispatch) => fetch(playlistsApi.addNewVideoPlaylist(publicId), requestPOSTOptions(video))
   .then((updatedPlaylist) => {
     // Hey dispatcher, go tell all the stores that a course was just created.
     dispatch({

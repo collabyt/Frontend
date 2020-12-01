@@ -5,13 +5,13 @@ const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
-    entry: [
-        './src/index.js'],
+    entry: {
+        "app": './src/index.js'
+    },
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: 'bundle.js',
-        chunkFilename: '[id].js',
-        publicPath: ''
+        filename: "[name].js",
+        sourceMapFilename: "[name].js.map"
     },
     resolve: {
         extensions: ['.js', '.jsx']
@@ -46,7 +46,7 @@ module.exports = {
             }
         ]
     },
-    devtool: 'inline-source-map',
+    devtool: 'source-map',
     devServer: {
         contentBase: path.join(__dirname, 'public'),
         compress: true,

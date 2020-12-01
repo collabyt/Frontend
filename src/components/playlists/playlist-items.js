@@ -39,7 +39,7 @@ PlaylistItems.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
-      isPublic: PropTypes.bool.isRequired,
+      isPublic: PropTypes.bool,
       passPhrase: PropTypes.string,
       words: PropTypes.arrayOf(
         PropTypes.shape({
@@ -52,7 +52,7 @@ PlaylistItems.propTypes = {
           id: PropTypes.number,
           name: PropTypes.string,
           link: PropTypes.string,
-          uniqueId: PropTypes.string,
+          uniqueid: PropTypes.string,
         }),
       ),
     }),

@@ -12,7 +12,7 @@ function AddPlaylistModal (props) {
   }
 
   return (
-    <div className="modal fade" id="createPlaylist" tabIndex="-1" role="dialog" aria-labelledby="createPlaylistTitle">
+    <div className="modal fade" id="createPlaylist" tabIndex="-1" role="dialog" aria-labelledby="createPlaylistTitle"  aria-hidden="true">
       <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-header">
@@ -23,7 +23,7 @@ function AddPlaylistModal (props) {
           </div>
           <div className="modal-body">
           <form>
-              <TextInput id="name" label="Name"name="Name" value={props.newPlaylist.name}/>
+              <TextInput id="nameModal" label="Name"name="Name" value={props.newPlaylist.name}/>
               <div className="row">
                 <div className="col-md-4">
                   <label>Public</label>

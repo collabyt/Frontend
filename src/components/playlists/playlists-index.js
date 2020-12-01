@@ -8,6 +8,8 @@ class PlaylistHome extends React.Component {
     this.props.loadPlaylists();
   }
 
+
+
   render() {
     return (
       <div className="container">
