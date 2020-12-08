@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from "prop-types";
+import React from 'react';
+import TextInput from '../../common/text-input';
+import "./add-playlist.css";
 
 class AddVideos extends React.Component {
 
-  addVideoLink = (e) => {
-    this.props.newVideo.link = e.target.value;
-  }
-
-  addNewVideos = () => {
-    if (this.props.newVideo.link != '') {
-         this.props.videos.push(this.props.videos.newVideo);
-    }
+  constructor(props) {
+		super(props);
+		this.state = {
+			errorMessage: ""
+		}
   }
 
   componentWillUnmount() {
@@ -30,41 +27,38 @@ class AddVideos extends React.Component {
       this.props.newVideo.uniqueid = match[7];
       this.props.newVideo.link = e.target.value;
     } else if (e.target.value === "") {
-      this.setState(prevState => ({ errorMessage: "" }));
+      this.setState({ errorMessage: "" });
     }else {
-      this.setState(prevState => ({ errorMessage: "The YouTube link is not valid" }));
+      this.setState({ errorMessage: "The YouTube link is not valid" });
     }
   }
 
   render() {
     return (<>
-        <div className="input-group">
-            <input type="text" className="form-control" placeholder="Add Videos" onChange={(e) => this.handleChangeLink(e)} value={this.props.newVideo.link}/>
+        <div className="input-group w-100 d-inline-flex flex-row justify-content-start">
+          <div className="col-md-10">
+            <TextInput id="link" label="Link" onChange={(e) => this.handleChangeLink(e)} error={this.state.errorMessage} name="Link" value={this.props.newVideo.link}/>
+          </div>
+          <div className="col-md-2 add-videos-modal">
             <div className="input-group-append">
-                <button className="btn btn-secondary" type="button" onClick={() => this.addNewVideos()}>
+                <button className="btn btn-secondary" type="button" onClick={(e) => this.props.addNewVideos(this.props.newVideo, e)}>
                     <i className="fa fa-plus"></i>
                 </button>
-                <div className="text-center"  id="add_videos_modal">
-                   {
-                       this.props.videos && this.props.videos.map((video, key) => {
-                           return <span id={key}>{video.link}</span>
-                       })
-                   } 
-                </div>
             </div>
+          </div>
+        </div>
+        <div className="text-center"  id="add_videos_modal">
+        {
+            this.props.videos && this.props.videos.map((video, key) => {
+                return <span id={key}>{video.link}</span>
+            })
+        } 
         </div>
     </>);
   }
   
 }
 
-const mapStateToProps = state => {
-	return {
-        videos: [],
-        newVideo: {link: ''}
-	}
-}
-
-export default  connect(mapStateToProps, null)(AddVideos);
+export default AddVideos;
 
 

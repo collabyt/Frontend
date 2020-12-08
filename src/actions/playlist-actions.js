@@ -33,7 +33,7 @@ export const addNewVideoPlaylist = (publicId, video) => (dispatch) => fetch(play
     });
   });
 
-export const savePlaylist = (playlist) => (dispatch) => fetch(playlistsApi.getPlaylists(), requestPOSTOptions(playlist))
+export const createPlaylist = (playlist) => (dispatch) => fetch(playlistsApi.getPlaylists(), requestPOSTOptions(playlist))
   .then((savedPlaylist) => {
     // Hey dispatcher, go tell all the stores that a course was just created.
     dispatch({

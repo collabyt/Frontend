@@ -28,9 +28,9 @@ class AddVideoForm extends React.Component {
       this.props.newVideo.uniqueid = match[7];
       this.props.newVideo.link = e.target.value;
     } else if (e.target.value === "") {
-      this.setState(prevState => ({ errorMessage: "" }));
+      this.setState({ errorMessage: "" });
     }else {
-      this.setState(prevState => ({ errorMessage: "The YouTube link is not valid" }));
+      this.setState({ errorMessage: "The YouTube link is not valid" });
     }
   }
   
