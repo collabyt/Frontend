@@ -6,7 +6,7 @@ function PlaylistItems(props) {
   const { playlists } = props;
 
   return (
-    <div className="container">
+    <>
       <div className="carousel slide" data-ride="carousel" id="carousel-1" data-interval="false">
         <div className="carousel-inner" role="listbox">
           {
@@ -30,7 +30,7 @@ function PlaylistItems(props) {
           <span className="sr-only">Next</span>
         </a>
       </div>
-    </div>
+    </>
   );
 }
 

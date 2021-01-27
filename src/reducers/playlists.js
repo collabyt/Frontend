@@ -19,13 +19,13 @@ function addNewVideoPlaylist(playlists, playlist) {
 const playlists = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.CREATE_PLAYLIST:
-      let newPlaylists = state.playlists.concat(action.playlist);
+      let newPlaylists = state.totalPlaylists.concat(action.playlist);
       return {
         ...state,
         totalPlaylists: newPlaylists,
       };
     case actionTypes.UPDATE_PLAYLIST:
-      newPlaylists = state.playlists.map((playlist) => (playlist.id === action.playlist.id ? action.playlist : playlist));
+      newPlaylists = state.totalPlaylists.map((playlist) => (playlist.id === action.playlist.id ? action.playlist : playlist));
       return {
         ...state,
         totalPlaylists: newPlaylists,

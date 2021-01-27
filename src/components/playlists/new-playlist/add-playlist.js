@@ -12,9 +12,9 @@ class AddPlaylistModal extends React.Component {
       isPublic: true,
       newPlaylist: {
         name: '',
-        isPublic: true,
-        passPhrase: '',
-        words: [],
+        public: true,
+        passphrase: '',
+        keywords: [],
         videos: [],
       },
       newVideo: {link: '', uniqueid: ''}
@@ -27,8 +27,8 @@ class AddPlaylistModal extends React.Component {
     this.setState({newPlaylist: this.state.newPlaylist});
   }
 
-   addNewVideos = (newVideo, e) => {
-    if (newVideo.link != '') {
+   addNewVideos = (newVideo) => {
+    if (newVideo.link != '' && newVideo.name != '') {
          this.state.newPlaylist.videos.push(newVideo);
          this.setState({newPlaylist: this.state.newPlaylist});
     }
@@ -36,7 +36,26 @@ class AddPlaylistModal extends React.Component {
 
   createPlaylist = (newPlaylist, e) => {
     this.props.createPlaylist(newPlaylist);
+    this.cleanData();
   }
+
+  handleChangeName = (e) => {
+    this.state.newPlaylist.name = e.target.value
+    this.setState({newPlaylist: this.state.newPlaylist});
+  }
+
+  cleanData = () => {
+    this.setState({ newPlaylist: {
+      name: '',
+      public: true,
+      passphrase: '',
+      keywords: [],
+      videos: [],
+    },
+    newVideo: {link: '', uniqueid: ''}
+    });
+  }
+
 
   render() {
     const { newPlaylist } = this.state;
@@ -52,7 +71,7 @@ class AddPlaylistModal extends React.Component {
             </div>
             <div className="modal-body">
             <form>
-                <TextInput id="nameModal" label="Name"name="Name" value={newPlaylist.name}/>
+                <TextInput id="nameModal" label="Name"name="Name" value={newPlaylist.name} onChange={(e) => this.handleChangeName(e)}/>
                 <div className="row">
                   <div className="col-md-4">
                     <label>Public</label>
@@ -72,12 +91,14 @@ class AddPlaylistModal extends React.Component {
                   </div>
                 </div>
                 <TextInput id="words" label="Keywords"name="Keywords" value=""/>
-                <AddVideos key="" videos={newPlaylist.videos} newVideo={this.state.newVideo} addNewVideos={(e) => this.addNewVideos(this.state.newVideo, e)} />
+                <hr/>
+                <strong>Videos</strong>
+                <AddVideos videos={newPlaylist.videos} newVideo={this.state.newVideo} addNewVideos={(e) => this.addNewVideos(this.state.newVideo, e)} />
               </form>
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-outline-primary" data-dismiss="modal">Close</button>
-              <button type="button" className="btn btn-primary" onClick={(e) => this.createPlaylist(newPlaylist, e)}>Save changes</button>
+              <button type="submit" className="btn btn-primary" onClick={(e) => this.createPlaylist(newPlaylist, e)} data-dismiss="modal">Save changes</button>
             </div>
           </div>
         </div>

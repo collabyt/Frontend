@@ -1,11 +1,6 @@
+import axios from 'axios';
 import * as playlistsApi from '../api/playlists-api';
 import actionTypes from './action-types';
-
-const requestPOSTOptions = (bodyRequest) => ({
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(bodyRequest),
-});
 
 export const requestPlaylists = () => ({
   type: actionTypes.REQUEST_PLAYLISTS,
@@ -19,26 +14,26 @@ export const receivePlaylists = (json) => ({
 
 export const loadPlaylists = () => (dispatch) => {
   dispatch(requestPlaylists());
-  return fetch(playlistsApi.getPlaylists())
-    .then((response) => response.json())
+  return axios.get(playlistsApi.getPlaylists())
+    .then((response) => response.data)
     .then((json) => dispatch(receivePlaylists(json)));
 };
 
-export const addNewVideoPlaylist = (publicId, video) => (dispatch) => fetch(playlistsApi.addNewVideoPlaylist(publicId), requestPOSTOptions(video))
-  .then((updatedPlaylist) => {
+export const addNewVideoPlaylist =  (publicId, video) => (dispatch) => axios.post(playlistsApi.addNewVideoPlaylist(publicId), video )
+  .then((res) => {
     // Hey dispatcher, go tell all the stores that a course was just created.
     dispatch({
       type: actionTypes.ADD_VIDEO_INTO_PLAYLIST,
-      playlist: updatedPlaylist,
+      playlist: res.data,
     });
   });
 
-export const createPlaylist = (playlist) => (dispatch) => fetch(playlistsApi.getPlaylists(), requestPOSTOptions(playlist))
-  .then((savedPlaylist) => {
+export const createPlaylist = (playlist) => (dispatch) => axios.post(playlistsApi.postPlaylists(),  playlist )
+  .then((res) => {
     // Hey dispatcher, go tell all the stores that a course was just created.
     dispatch({
       type: actionTypes.CREATE_PLAYLIST,
-      playlist: savedPlaylist,
+      playlist: res.data,
     });
   });
 

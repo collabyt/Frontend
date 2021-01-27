@@ -4,6 +4,10 @@ export function getPlaylists() {
   return `${baseUrl}?limit=10&offset=0`;
 }
 
+export function postPlaylists() {
+  return `${baseUrl}`;
+}
+
 export function getPlaylistById(playlistId) {
   return `${baseUrl}/${playlistId}`;
 }

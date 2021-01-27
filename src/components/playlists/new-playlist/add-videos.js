@@ -13,6 +13,7 @@ class AddVideos extends React.Component {
 
   componentWillUnmount() {
       this.props.newVideo.link = '';
+      this.props.newVideo.name = '';
       this.props.videos = [];
   }
 
@@ -33,10 +34,15 @@ class AddVideos extends React.Component {
     }
   }
 
+  handleChangeName = (e) => {
+    this.props.newVideo.name = e.target.value;
+  }
+
   render() {
-    return (<>
+    return (<div>
         <div className="input-group w-100 d-inline-flex flex-row justify-content-start">
           <div className="col-md-10">
+            <TextInput id="name" label="Name"name="Name" onChange={(e) => this.handleChangeName(e)} value={this.props.newVideo.name}/>
             <TextInput id="link" label="Link" onChange={(e) => this.handleChangeLink(e)} error={this.state.errorMessage} name="Link" value={this.props.newVideo.link}/>
           </div>
           <div className="col-md-2 add-videos-modal">
@@ -54,7 +60,7 @@ class AddVideos extends React.Component {
             })
         } 
         </div>
-    </>);
+    </div>);
   }
   
 }

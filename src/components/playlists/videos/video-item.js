@@ -16,17 +16,11 @@ class VideoItem extends React.Component {
   render() {
     return (
       <li className="d-flex w-100 mb-1 flex-column">
-        <button
-          type="button"
-          className="btn btn-ouline-primary text-left w-100"
-          data-toggle="collapse"
-          onClick={() => this.onClick()}
-          data-parent={`#playlist_${this.props.indexPlaylist}`}
-          href={`#video_${this.props.indexPlaylist}${this.props.index}`}
-        >
+        <button type="button" className="btn btn-ouline-primary text-left w-100" data-toggle="collapse" onClick={() => this.onClick()}
+          data-parent={`#playlist_${this.props.indexPlaylist}`} href={`#video_${this.props.indexPlaylist}${this.props.index}`}>
           {this.props.video.name}
           <div className="bi bi-chevron-down float-right mt-1">
-            {
+          {
 						this.state.toggleIcon ?	<i className="fa fa-angle-up" /> : <i className="fa fa-angle-down" />
 					}
           </div>

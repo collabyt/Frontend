@@ -1,4 +1,3 @@
-import './assets/css/styles.css';
 import React from 'react';
 import { render } from 'react-dom';
 import { applyMiddleware, compose, createStore } from 'redux';
