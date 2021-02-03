@@ -3,6 +3,7 @@ import TextInput from '../../common/text-input';
 import { connect } from 'react-redux';
 import AddVideos from './add-videos';
 import { createPlaylist } from "../../../actions/playlist-actions";
+import AddWords from './add-words';
 
 class AddPlaylistModal extends React.Component {
 
@@ -90,7 +91,8 @@ class AddPlaylistModal extends React.Component {
                     <TextInput id="passphrase" label="PassPhrase"name="PassPhrase" value={newPlaylist.passPhrase} isDisabled={this.state.isPublic}/>
                   </div>
                 </div>
-                <TextInput id="words" label="Keywords"name="Keywords" value=""/>
+                <strong>Keywords</strong>
+                <AddWords></AddWords>
                 <hr/>
                 <strong>Videos</strong>
                 <AddVideos videos={newPlaylist.videos} newVideo={this.state.newVideo} addNewVideos={(e) => this.addNewVideos(this.state.newVideo, e)} />

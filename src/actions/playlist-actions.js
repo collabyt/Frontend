@@ -37,11 +37,3 @@ export const createPlaylist = (playlist) => (dispatch) => axios.post(playlistsAp
     });
   });
 
-/* export function getPlaylistById(playlistId) {
-  return playlistsApi.getPlaylistById(playlistId).then(playlist => {
-    dispatcher.dispatch({
-      actionType: actionTypes.GET_PLAYLIST_BY_ID,
-      playlist: playlist
-    });
-  });
-} */

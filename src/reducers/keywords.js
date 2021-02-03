@@ -1,17 +1,22 @@
 import actionTypes from '../actions/action-types';
-import { initialState } from './playlists';
 
-function updateObject(oldObject, newValues) {
-  return { ...oldObject, ...newValues };
-}
+export const initialState = {
+  totalKyewords: []
+};
 
 const keywords = (state = initialState, action) => {
-  switch (action.yype) {
+  switch (action.type) {
     case actionTypes.CREATE_KEYWORDS:
-      const newKeywords = state.keywords.concat(action.keyword);
-      return updateObject(state, { keywords: newKeywords });
-    case actionTypes.GET_KEYWORDS:
-      return updateObject(state, { keywords: action.keywords });
+      let newKeywords = state.totalKyewords.concat(action.keyword);
+      return {
+        ...state,
+        totalKyewords: newKeywords,
+      };
+    case actionTypes.LOAD_KEYWORDS:
+      return {
+        ...state,
+        totalKyewords: action.list,
+      };
     default:
       return state;
   }

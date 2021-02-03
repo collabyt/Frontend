@@ -2,7 +2,7 @@ import actionTypes from '../actions/action-types';
 
 export const initialState = {
   totalPlaylists: [],
-  totalKyeword: [],
+  totalKyewords: [],
   selectedPlaylist: null,
 };
 

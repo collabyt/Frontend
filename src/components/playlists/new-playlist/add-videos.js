@@ -53,12 +53,14 @@ class AddVideos extends React.Component {
             </div>
           </div>
         </div>
-        <div className="text-center"  id="add_videos_modal">
-        {
-            this.props.videos && this.props.videos.map((video, key) => {
-                return <span id={key}>{video.link}</span>
-            })
-        } 
+        <div className="text-left"  id="add_videos_modal">
+          <ul>
+          {
+              this.props.videos && this.props.videos.map((video, key) => {
+                return <li id={key}>{video.name}</li>
+              })
+          }
+          </ul> 
         </div>
     </div>);
   }
