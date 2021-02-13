@@ -1,43 +1,59 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PlaylistItem from './playlist-item';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 function PlaylistItems(props) {
-  const { playlists } = props;
+
+  const { playlists } = props
+
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+      slidesToSlide: 3 // optional, default to 1.
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+      slidesToSlide: 2 // optional, default to 1.
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      slidesToSlide: 1 // optional, default to 1.
+    }
+  };
+  
 
   return (
-    <>
-      <div className="carousel slide" data-ride="carousel" id="carousel-1" data-interval="false">
-        <div className="carousel-inner" role="listbox">
-          {
-          playlists && playlists.map((playlist, index) => (<PlaylistItem key={index} index={index} playlist={playlist} active={index === 0} />))
-        }
-        </div>
-
-        <ol className="carousel-indicators">
-          {
-          playlists && playlists.map((playlist, index) => (<li key={index} data-target="#carousel-1" data-slide-to={index.toString()} className={index === 0 ? 'active' : ''} />))
-        }
-        </ol>
-      </div>
-      <div>
-        <a className="carousel-control-prev" href="#carousel-1" role="button" data-slide="prev">
-          <span className="carousel-control-prev-icon" />
-          <span className="sr-only">Previous</span>
-        </a>
-        <a className="carousel-control-next" href="#carousel-1" role="button" data-slide="next">
-          <span className="carousel-control-next-icon" />
-          <span className="sr-only">Next</span>
-        </a>
-      </div>
-    </>
+    <Carousel
+    swipeable={false}
+    draggable={false}
+    showDots={true}
+    responsive={responsive}
+    ssr={true} // means to render carousel on server-side.
+    infinite={false}
+    keyBoardControl={true}
+    customTransition="all .5"
+    containerClass="carousel-container"
+    removeArrowOnDeviceType={["tablet", "mobile"]}
+    dotListClass="custom-dot-list-style"
+    itemClass="carousel-item-padding-40-px"
+    deviceType={"desktop"}
+  >
+    {
+      playlists && playlists.map((playlist, index) => (<PlaylistItem key={index} index={index} playlist={playlist} active={index === 0} />))
+    }
+    </Carousel>
   );
 }
 
 PlaylistItems.propTypes = {
   playlists: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.number,
       name: PropTypes.string.isRequired,
       isPublic: PropTypes.bool,
       passPhrase: PropTypes.string,

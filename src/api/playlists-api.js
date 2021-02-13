@@ -1,7 +1,7 @@
 const baseUrl = 'http://localhost:8080/api/v1/playlists';
 
-export function getPlaylists() {
-  return `${baseUrl}?limit=10&offset=0`;
+export function getPlaylists(limit, offset) {
+  return `${baseUrl}?limit=${limit}&offset=${offset}`;
 }
 
 export function postPlaylists() {

@@ -4,10 +4,26 @@ import PlaylistItems from './playlist-items';
 import { loadPlaylists } from '../../actions/playlist-actions';
 
 class PlaylistHome extends React.Component {
+  
+  constructor(props) {
+		super(props);
+		this.state = {
+      limit: 10,
+      offset: 0
+		}
+  }
+  
   componentDidMount() {
-    this.props.loadPlaylists();
+    this.props.loadPlaylists(this.state.limit, this.state.offset);
   }
 
+  handleMorePlaylist() {
+    if (this.props.playlists.length % 10 === 0) {
+      this.state.offset = this.state.limit;
+      this.setState({offset: this.state.offset});
+      this.props.loadPlaylists(this.state.limit, this.state.offset);
+    }
+  }
 
 
   render() {
@@ -15,9 +31,9 @@ class PlaylistHome extends React.Component {
       <div className="container d-flex flex-column">
         <button type="button" className="create-playlist btn btn-ouline-primary mb-3 w-25 align-self-end" data-toggle="modal" data-target="#createPlaylist">
           <i className="fa fa-plus mr-1" />Add playlist
-        </button>  
-        {
-          this.props.playlists.length > 0 ? <PlaylistItems playlists={this.props.playlists} /> : <div />
+        </button> 
+        { 
+          this.props.playlists.length > 0 ? <PlaylistItems playlists={this.props.playlists} handleMorePlaylist={this.handleMorePlaylist} /> : <div />
         }
       </div>
     );

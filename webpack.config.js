@@ -30,8 +30,11 @@ module.exports = {
             },
             {
                 test: /\.css$/i,
-                exclude: /node_modules/,
-                use: ['style-loader', 'css-loader']
+                loaders: [
+                    'style-loader',
+                    'css-loader',
+                    'postcss-loader'
+                  ]
             },
             {
                 test: /\.(png|jpe?g|gif)$/,
@@ -43,7 +46,27 @@ module.exports = {
                 options: {
                   exposes: ['$', 'jQuery'],
                 },
-            }
+            },
+            {
+                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url-loader',
+                query: {
+                  limit: '10000',
+                  mimetype: 'application/octet-stream'
+                }
+              },
+              {
+                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'file-loader'
+              },
+              {
+                test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url-loader',
+                query: {
+                  limit: 10000,
+                  mimetype: 'application/font-woff'
+                }
+              },
         ]
     },
     devtool: 'source-map',

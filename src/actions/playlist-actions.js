@@ -12,9 +12,9 @@ export const receivePlaylists = (json) => ({
   list: json,
 });
 
-export const loadPlaylists = () => (dispatch) => {
+export const loadPlaylists = (limit, offset) => (dispatch) => {
   dispatch(requestPlaylists());
-  return axios.get(playlistsApi.getPlaylists())
+  return axios.get(playlistsApi.getPlaylists(limit, offset))
     .then((response) => response.data)
     .then((json) => dispatch(receivePlaylists(json)));
 };

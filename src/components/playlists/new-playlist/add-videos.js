@@ -57,7 +57,7 @@ class AddVideos extends React.Component {
           <ul>
           {
               this.props.videos && this.props.videos.map((video, key) => {
-                return <li id={key}>{video.name}</li>
+                return <li key={key}>{video.name}</li>
               })
           }
           </ul> 

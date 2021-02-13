@@ -51,7 +51,7 @@ PlaylistItem.propTypes = {
 	index: PropTypes.number.isRequired,
 	active: PropTypes.bool.isRequired,
 	playlist: PropTypes.shape({
-		id: PropTypes.number.isRequired,
+		id: PropTypes.number,
 		name: PropTypes.string.isRequired,
 		publicid: PropTypes.string.isRequired,
 		isPublic: PropTypes.bool,

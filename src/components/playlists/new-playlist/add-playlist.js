@@ -18,7 +18,8 @@ class AddPlaylistModal extends React.Component {
         keywords: [],
         videos: [],
       },
-      newVideo: {link: '', uniqueid: ''}
+      newVideo: {link: '', uniqueid: ''},
+      newKeyword: { id: 0, keyword: ''}
 		}
   }
 
@@ -35,9 +36,18 @@ class AddPlaylistModal extends React.Component {
     }
   }
 
+  addKeyword = (newKeyword) => {
+    if (newKeyword.keyword != '') {
+         this.state.newPlaylist.keywords.push(newKeyword);
+         this.setState({newPlaylist: this.state.newPlaylist});
+    }
+  }
+
   createPlaylist = (newPlaylist, e) => {
-    this.props.createPlaylist(newPlaylist);
+    const playlistBody = newPlaylist;
+
     this.cleanData();
+    this.props.createPlaylist(playlistBody);
   }
 
   handleChangeName = (e) => {
@@ -46,15 +56,19 @@ class AddPlaylistModal extends React.Component {
   }
 
   cleanData = () => {
-    this.setState({ newPlaylist: {
+    this.state.newPlaylist = {
       name: '',
       public: true,
       passphrase: '',
       keywords: [],
       videos: [],
-    },
-    newVideo: {link: '', uniqueid: ''}
-    });
+    };
+    this.state.newVideo = {link: '', uniqueid: ''};
+    this.state.newKeyword = { id: 0, keyword: ''}
+
+    this.setState({ newPlaylist: this.state.newPlaylist});
+    this.setState({ newVideo: this.state.newVideo});
+    this.setState({ newKeyword: this.state.newKeyword});
   }
 
 
@@ -72,30 +86,30 @@ class AddPlaylistModal extends React.Component {
             </div>
             <div className="modal-body">
             <form>
-                <TextInput id="nameModal" label="Name"name="Name" value={newPlaylist.name} onChange={(e) => this.handleChangeName(e)}/>
+                <TextInput id="nameModal" label="Name"name="Name" defaultValue={newPlaylist.name} onChange={(e) => this.handleChangeName(e)}/>
                 <div className="row">
                   <div className="col-md-4">
                     <label>Public</label>
                     <div className="d-flex flex-row">
                     <div className="radio mr-3">
-                      <label><input type="radio" value={newPlaylist.isPublic} checked={this.state.isPublic == true}
+                      <label><input type="radio" defaultValue={newPlaylist.isPublic} checked={this.state.isPublic == true}
                         onChange={(e) => this.checkPublicPlaylist(e)} />Yes</label>
                     </div>
                     <div className="radio">
-                      <label><input type="radio" value={!newPlaylist.isPublic} checked={this.state.isPublic == false} 
+                      <label><input type="radio" defaultValue={!newPlaylist.isPublic} checked={this.state.isPublic == false} 
                         onChange={(e) => this.checkPublicPlaylist(e)} />No</label>
                     </div>
                     </div>
                   </div>
                   <div className="col-md-8">
-                    <TextInput id="passphrase" label="PassPhrase"name="PassPhrase" value={newPlaylist.passPhrase} isDisabled={this.state.isPublic}/>
+                    <TextInput id="passphrase" label="PassPhrase"name="PassPhrase" defaultValue={newPlaylist.passPhrase} isDisabled={this.state.isPublic}/>
                   </div>
                 </div>
                 <strong>Keywords</strong>
-                <AddWords></AddWords>
+                <AddWords keywords={newPlaylist.keywords} newKeyword={this.state.newKeyword} addNewKeyword={() => this.addKeyword(this.state.newKeyword)}></AddWords>
                 <hr/>
                 <strong>Videos</strong>
-                <AddVideos videos={newPlaylist.videos} newVideo={this.state.newVideo} addNewVideos={(e) => this.addNewVideos(this.state.newVideo, e)} />
+                <AddVideos videos={newPlaylist.videos} newVideo={this.state.newVideo} addNewVideos={() => this.addNewVideos(this.state.newVideo)} />
               </form>
             </div>
             <div className="modal-footer">
