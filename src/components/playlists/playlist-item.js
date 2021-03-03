@@ -3,32 +3,50 @@ import PropTypes from "prop-types";
 import VideoItem from "./videos/video-item";
 import "./playlist-item.css";
 import AddVideoForm from "./videos/add-videos";
-import { connect } from "react-redux";
 import KeywordsList from "./keywords/keywords-list";
+import PrivatePlaylistForm from "./private/private-form-playlist";
 
 class PlaylistItem extends React.Component {
 
 	render () {
+		const { active, index, playlist } = this.props;
+
 		return (
-			<div className={this.props.active  ? "carousel-item active" : "carousel-item"}>
+			<div className={active  ? "carousel-item active" : "carousel-item"}>
 			  <div className="row">
 				  <div className="col-xl-12 mx-auto">
 					  <div className="cta text-center rounded playlist-container">
 						  <h6 className="section-heading mb-3">	
 							  <span className="section-heading-lower">{this.props.playlist.name}</span>
 						  </h6>
-						  <ul id={"playlist_" + this.props.index} className="mx-0 p-0 mb-2 text-left scroll-playlist">
+						  <ul id={"playlist_" + index} className="mx-0 p-0 mb-2 text-left scroll-playlist">
+							{
+								playlist.public == false && <li className="d-flex w-100 mb-1 flex-column">
+									<button type="button" className="btn btn-ouline-primary text-left w-100" data-toggle="collapse" 
+									data-parent={"#playlist_" + index} href={"#add_" + index}>
+										Private
+										<div className="bi bi-chevron-down float-right mt-1">
+											<i className="fa fa-plus"></i>
+										</div>
+									</button>
+									<div className="panel-collapse collapse text-center"  id={"add_" + index}>
+										<div className="col-xl-8 mx-auto border mt-2 mb-2 p-2">
+										<PrivatePlaylistForm playlist={playlist}></PrivatePlaylistForm>
+										</div>
+									</div>
+								</li>
+							}
 						  <li className="d-flex w-100 mb-1 flex-column">
 							  <button type="button" className="btn btn-ouline-primary text-left w-100" data-toggle="collapse" 
-							  data-parent={"#playlist_" + this.props.index} href={"#add_" + this.props.index}>
+							  data-parent={"#playlist_" + index} href={"#add_" + index}>
 								  Add video
 								  <div className="bi bi-chevron-down float-right mt-1">
 								  	<i className="fa fa-plus"></i>
 								  </div>
 							  </button>
-							  <div className="panel-collapse collapse text-center"  id={"add_" + this.props.index}>
+							  <div className="panel-collapse collapse text-center"  id={"add_" + index}>
 								  <div className="col-xl-8 mx-auto border mt-2 mb-2 p-2">
-								  <AddVideoForm playlist={this.props.playlist}></AddVideoForm>
+								  <AddVideoForm playlist={playlist}></AddVideoForm>
 								  </div>
 							  </div>
 						  </li>
@@ -38,7 +56,7 @@ class PlaylistItem extends React.Component {
 							  })
 						  }
 						  </ul>
-						  <KeywordsList keywords={this.props.playlist.keywords}/>
+						  <KeywordsList keywords={playlist.keywords}/>
 					  </div>
 				  </div>
 			  </div>
@@ -54,7 +72,7 @@ PlaylistItem.propTypes = {
 		id: PropTypes.number,
 		name: PropTypes.string.isRequired,
 		publicid: PropTypes.string.isRequired,
-		isPublic: PropTypes.bool,
+		public: PropTypes.bool,
 		passPhrase: PropTypes.string,
 		words: PropTypes.arrayOf(
 			PropTypes.shape({

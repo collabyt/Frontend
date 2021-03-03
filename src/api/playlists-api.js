@@ -15,3 +15,7 @@ export function getPlaylistById(playlistId) {
 export function addNewVideoPlaylist(publicId) {
   return `${baseUrl}/${publicId}/videos`;
 }
+
+export function authPrivatePlaylist(publicId) {
+  return `http://localhost:8080/api/v1/auth/${publicId}`;
+}

@@ -1,51 +1,54 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect, useRef, useState } from 'react';
 import PlaylistItems from './playlist-items';
-import { loadPlaylists } from '../../actions/playlist-actions';
+import * as playlistsApi from '../../api/playlists-api';
+import axios from 'axios';
 
-class PlaylistHome extends React.Component {
+const PlaylistHome = () => {
   
-  constructor(props) {
-		super(props);
-		this.state = {
-      limit: 10,
-      offset: 0
-		}
-  }
+  const childRef = useRef();
+  const [limit, setLimit] = useState(10);
+  const [offset, setOffset] = useState(0);
+  const [playlists, setPlaylists] = useState([]);
+  const [isMounted, setMount] = useState(false);
   
-  componentDidMount() {
-    this.props.loadPlaylists(this.state.limit, this.state.offset);
-  }
+   useEffect(() => {
+    if (!isMounted) {
+      loadData();
+    }
+  });
 
-  handleMorePlaylist() {
-    if (this.props.playlists.length % 10 === 0) {
-      this.state.offset = this.state.limit;
-      this.setState({offset: this.state.offset});
-      this.props.loadPlaylists(this.state.limit, this.state.offset);
+  /*useEffect(() =>{
+    handleMorePlaylist();
+  }, [childRef]) */
+    
+  const loadData = async () => {
+    const response = await axios.get(playlistsApi.getPlaylists(limit, offset));
+        
+    if (response.data !== null) {
+      setPlaylists(response.data);
+      setMount(true);
+    } 
+  }
+ 
+  const handleMorePlaylist = () => {
+    if (playlists.length % 10 === 0 && childRef.current && childRef.current.counter % 10 === 0) {
+      offset = offset + limit;
+      setOffset(offset);
+      this.loadPlaylists(limit, offset);
     }
   }
 
-
-  render() {
-    return (
+  return (
       <div className="container d-flex flex-column">
         <button type="button" className="create-playlist btn btn-ouline-primary mb-3 w-25 align-self-end" data-toggle="modal" data-target="#createPlaylist">
           <i className="fa fa-plus mr-1" />Add playlist
         </button> 
         { 
-          this.props.playlists.length > 0 ? <PlaylistItems playlists={this.props.playlists} handleMorePlaylist={this.handleMorePlaylist} /> : <div />
+          playlists.length > 0 ? <PlaylistItems ref={childRef} playlists={playlists} handleMorePlaylist={handleMorePlaylist} /> : <div />
         }
       </div>
     );
-  }
 }
 
-const mapDispatchToProps = {
-  loadPlaylists,
-};
 
-const mapStateToProps = (state) => ({
-  playlists: state.playlists.totalPlaylists,
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(PlaylistHome);
+export default PlaylistHome;

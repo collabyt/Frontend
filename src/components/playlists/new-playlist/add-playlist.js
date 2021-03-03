@@ -10,7 +10,7 @@ class AddPlaylistModal extends React.Component {
   constructor(props) {
 		super(props);
 		this.state = {
-      isPublic: true,
+      public: true,
       newPlaylist: {
         name: '',
         public: true,
@@ -23,9 +23,15 @@ class AddPlaylistModal extends React.Component {
 		}
   }
 
-  checkPublicPlaylist = (e) => {
-    this.setState({isPublic: e.target.value === "true"});
-    this.props.newPlaylist.isPublic = (e.target.value === "true");
+  checkAsPublicPlaylist = (e) => {
+    this.setState({public: true});
+    this.state.newPlaylist.public = true;
+    this.setState({newPlaylist: this.state.newPlaylist});
+  }
+
+  checkAsPrivatePlaylist = (e) => {
+    this.setState({public: false});
+    this.state.newPlaylist.public = false;
     this.setState({newPlaylist: this.state.newPlaylist});
   }
 
@@ -46,12 +52,17 @@ class AddPlaylistModal extends React.Component {
   createPlaylist = (newPlaylist, e) => {
     const playlistBody = newPlaylist;
 
-    this.cleanData();
     this.props.createPlaylist(playlistBody);
+    this.cleanData();
   }
 
   handleChangeName = (e) => {
-    this.state.newPlaylist.name = e.target.value
+    this.state.newPlaylist.name = e.target.value;
+    this.setState({newPlaylist: this.state.newPlaylist});
+  }
+
+  handleChangePassPhrase = (e) => {
+    this.state.newPlaylist.passphrase = e.target.value;
     this.setState({newPlaylist: this.state.newPlaylist});
   }
 
@@ -92,17 +103,17 @@ class AddPlaylistModal extends React.Component {
                     <label>Public</label>
                     <div className="d-flex flex-row">
                     <div className="radio mr-3">
-                      <label><input type="radio" defaultValue={newPlaylist.isPublic} checked={this.state.isPublic == true}
-                        onChange={(e) => this.checkPublicPlaylist(e)} />Yes</label>
+                      <label><input type="radio" defaultValue={newPlaylist.public} checked={this.state.public == true}
+                        onChange={(e) => this.checkAsPublicPlaylist(e)} />Yes</label>
                     </div>
                     <div className="radio">
-                      <label><input type="radio" defaultValue={!newPlaylist.isPublic} checked={this.state.isPublic == false} 
-                        onChange={(e) => this.checkPublicPlaylist(e)} />No</label>
+                      <label><input type="radio" defaultValue={!newPlaylist.public} checked={this.state.public == false} 
+                        onChange={(e) => this.checkAsPrivatePlaylist(e)} />No</label>
                     </div>
                     </div>
                   </div>
                   <div className="col-md-8">
-                    <TextInput id="passphrase" label="PassPhrase"name="PassPhrase" defaultValue={newPlaylist.passPhrase} isDisabled={this.state.isPublic}/>
+                    <TextInput id="passphrase" label="PassPhrase"name="PassPhrase" defaultValue={newPlaylist.passPhrase} isDisabled={this.state.public} onChange={(e) => this.handleChangePassPhrase(e)}/>
                   </div>
                 </div>
                 <strong>Keywords</strong>

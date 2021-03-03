@@ -1,6 +1,6 @@
 import React from 'react';
 import "./add-playlist.css";
-import axios from 'axios'
+import axios from 'axios';
 import { Hint } from 'react-autocomplete-hint';
 import * as keywordsApi from '../../../api/keywords-api';
   
