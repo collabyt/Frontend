@@ -4,65 +4,52 @@ import VideoItem from "./videos/video-item";
 import "./playlist-item.css";
 import AddVideoForm from "./videos/add-videos";
 import KeywordsList from "./keywords/keywords-list";
-import PrivatePlaylistForm from "./private/private-form-playlist";
+import { useHistory } from "react-router-dom";
 
-class PlaylistItem extends React.Component {
+function PlaylistItem(props) {
 
-	render () {
-		const { active, index, playlist } = this.props;
-
-		return (
-			<div className={active  ? "carousel-item active" : "carousel-item"}>
-			  <div className="row">
-				  <div className="col-xl-12 mx-auto">
-					  <div className="cta text-center rounded playlist-container">
-						  <h6 className="section-heading mb-3">	
-							  <span className="section-heading-lower">{this.props.playlist.name}</span>
-						  </h6>
-						  <ul id={"playlist_" + index} className="mx-0 p-0 mb-2 text-left scroll-playlist">
-							{
-								playlist.public == false && <li className="d-flex w-100 mb-1 flex-column">
-									<button type="button" className="btn btn-ouline-primary text-left w-100" data-toggle="collapse" 
-									data-parent={"#playlist_" + index} href={"#add_" + index}>
-										Private
-										<div className="bi bi-chevron-down float-right mt-1">
-											<i className="fa fa-plus"></i>
-										</div>
-									</button>
-									<div className="panel-collapse collapse text-center"  id={"add_" + index}>
-										<div className="col-xl-8 mx-auto border mt-2 mb-2 p-2">
-										<PrivatePlaylistForm playlist={playlist}></PrivatePlaylistForm>
-										</div>
-									</div>
-								</li>
-							}
-						  <li className="d-flex w-100 mb-1 flex-column">
-							  <button type="button" className="btn btn-ouline-primary text-left w-100" data-toggle="collapse" 
-							  data-parent={"#playlist_" + index} href={"#add_" + index}>
-								  Add video
-								  <div className="bi bi-chevron-down float-right mt-1">
-								  	<i className="fa fa-plus"></i>
-								  </div>
-							  </button>
-							  <div className="panel-collapse collapse text-center"  id={"add_" + index}>
-								  <div className="col-xl-8 mx-auto border mt-2 mb-2 p-2">
-								  <AddVideoForm playlist={playlist}></AddVideoForm>
-								  </div>
-							  </div>
-						  </li>
-						  {
-							  this.props.playlist.videos && this.props.playlist.videos.map((video, index) => {
-								  return (<VideoItem key={index} video={video} index={index} indexPlaylist={this.props.index}/>)
-							  })
-						  }
-						  </ul>
-						  <KeywordsList keywords={playlist.keywords}/>
-					  </div>
-				  </div>
-			  </div>
-		  </div>);
-	}  
+	let history = useHistory();
+	const { active, index, playlist } = props;
 	
+	const goToDetails = (playlist) => {
+		history.push("/playlists/" + playlist.publicid);
+	}
+
+	return (
+		<div className={active  ? "carousel-item active" : "carousel-item"}>
+			<div className="row">
+				<div className="col-xl-12 mx-auto">
+					<div className="cta text-center rounded playlist-container">
+						<h6 className="section-heading mb-3">	
+							<span className="section-heading-lower"><button className="btn btn-link" onClick={() => goToDetails(playlist)}>{playlist.name}</button></span>
+						</h6>
+						<ul id={"playlist_" + index} className="mx-0 p-0 mb-2 text-left scroll-playlist">
+						<li className="d-flex w-100 mb-1 flex-column">
+							<button type="button" className="btn btn-ouline-primary text-left w-100" data-toggle="collapse" 
+							data-parent={"#playlist_" + index} href={"#add_" + index}>
+								Add video
+								<div className="bi bi-chevron-down float-right mt-1">
+								<i className="fa fa-plus"></i>
+								</div>
+							</button>
+							<div className="panel-collapse collapse text-center"  id={"add_" + index}>
+								<div className="col-xl-8 mx-auto border mt-2 mb-2 p-2">
+								<AddVideoForm playlist={playlist}></AddVideoForm>
+								</div>
+							</div>
+						</li>
+						{
+							playlist.videos && playlist.videos.map((video, index) => {
+								return (<VideoItem key={index} video={video} index={index} indexPlaylist={1}/>)
+							})
+						}
+						</ul>
+						<KeywordsList keywords={playlist.keywords}/>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }
 
 PlaylistItem.propTypes = {

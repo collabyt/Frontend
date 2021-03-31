@@ -8,8 +8,8 @@ export function postPlaylists() {
   return `${baseUrl}`;
 }
 
-export function getPlaylistById(playlistId) {
-  return `${baseUrl}/${playlistId}`;
+export function getPlaylistByPublicid(publicid) {
+  return `${baseUrl}/${publicid}`;
 }
 
 export function addNewVideoPlaylist(publicId) {
